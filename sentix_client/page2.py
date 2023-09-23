@@ -78,7 +78,19 @@ img.wordcloud {
 
 </style>
 """
+def generate_wordcloud(text_data):
+        # Join the text data into a single string
+        text = ' '.join(text_data)
 
+        # Generate the WordCloud
+        wordcloud = WordCloud(width=800, height=400, background_color='white').generate(text)
+
+        # Display the WordCloud using Matplotlib
+        plt.figure(figsize=(11, 10))
+        plt.imshow(wordcloud, interpolation='bilinear')
+        plt.title("Word Cloud of Tweet Text")
+        plt.axis('off')
+        return plt
 def app():
     st.title("Upload your CSV 📊📋📈")
     with st.spinner("Please wait while our model understands your data..."):
@@ -143,7 +155,7 @@ def app():
             sentiment_count = df["Sentiment"].value_counts()
             plt.pie(sentiment_count, labels=sentiment_count.index, autopct='%1.1f%%', shadow=False, startangle=140)
             st.pyplot(fig)
-            st.markdown("Word Cloud for Positive Sentiment Tweets")  
+            st.markdown("Word Cloud for Positive Sentiment Posts")  
 
             pos_tweets = df[df["Sentiment"] == "Positive"]
             pos_tweets=pos_tweets.astype(str)
@@ -156,10 +168,10 @@ def app():
             h_pos_tweets = df[df["Sentiment"] == "Highly Positive"]
             txt = " ".join(tweet.lower() for tweet in h_pos_tweets["Tweet"])
             wordcloud = generate_wordcloud(txt)
-            st.markdown("Word Cloud for Highly Positive Sentiment Tweets") 
+            st.markdown("Word Cloud for Highly Positive Sentiment Posts") 
             st.pyplot(wordcloud)
 
-            st.markdown("Word Cloud for Neutral Sentiment Tweets")
+            st.markdown("Word Cloud for Neutral Sentiment Posts")
             neu_tweets = df[df["Sentiment"] == "Neutral"]
             neu_tweets = neu_tweets.astype(str)
                 # Join positive tweets into a single string
@@ -170,14 +182,14 @@ def app():
 
         
                 
-            st.markdown("Word Cloud for Negative Sentiment Tweets")
+            st.markdown("Word Cloud for Negative Sentiment Posts")
             neg_tweets = df[df["Sentiment"] == "Negative"]
             neg_tweets=neg_tweets.astype(str)
             txt = " ".join(tweet.lower() for tweet in neg_tweets["Tweet"])
             wordcloud = generate_wordcloud(txt)
             st.pyplot(wordcloud)
 
-            st.markdown("Word Cloud for Very Negative Sentiment Tweets")
+            st.markdown("Word Cloud for Very Negative Sentiment Posts")
                 
             v_neg_tweets = df[df["Sentiment"] == "Very Negative"]
             v_neg_tweets=v_neg_tweets.astype(str)
@@ -191,7 +203,7 @@ def app():
             st.write("       ")
             st.write("       ")
 
-            # Clean the text data using the custom cleaner
+            st.markdown("Word Cloud for Overall Data")
             text_data = text_data.apply(clean_text)
             wordcloud = generate_wordcloud(text_data)
             st.pyplot(wordcloud)
@@ -232,16 +244,4 @@ def app():
             st.pyplot(fig)
 
 
-    def generate_wordcloud(text_data):
-        # Join the text data into a single string
-        text = ' '.join(text_data)
-
-        # Generate the WordCloud
-        wordcloud = WordCloud(width=800, height=400, background_color='white').generate(text)
-
-        # Display the WordCloud using Matplotlib
-        plt.figure(figsize=(11, 10))
-        plt.imshow(wordcloud, interpolation='bilinear')
-        plt.title("Word Cloud of Tweet Text")
-        plt.axis('off')
-        return plt
+    

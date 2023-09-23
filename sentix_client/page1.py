@@ -111,8 +111,10 @@ def app():
                             st.write(sentiment)
                             st.subheader("Polarity:")
                             st.write(predictions[0][0])
-                            if sentiment == 'Positive' or 'Neutral' and predicted_emotion =='sadness':
+                            if sentiment =='Neutral' and predicted_emotion =='sadness':
                                 predicted_emotion = 'ambiguous 🤓 '
+                            elif sentiment == 'Positive' and predicted_emotion =='sadness':
+                                predicted_emotion = 'satisfaction 🤓 '
                             st.subheader("Emotion:")
                             st.write(predicted_emotion)
                             st.subheader("Polarity:")
@@ -135,8 +137,10 @@ def app():
                         st.write(sentiment)
                         st.subheader("Polarity:")
                         st.write(predictions[0][0])
-                        if sentiment == 'Positive' or 'Neutral' and predicted_emotion =='sadness':
+                        if sentiment =='Neutral' and predicted_emotion =='sadness':
                             predicted_emotion = 'ambiguous 🤓 '
+                        elif sentiment == 'Positive' and predicted_emotion =='sadness':
+                            predicted_emotion = 'satisfaction 🤓 '
                         st.subheader("Emotion:")
                         st.write(predicted_emotion)
                         st.subheader("Polarity:")
@@ -164,8 +168,10 @@ def app():
                         st.write(sentiment)
                         st.subheader("Polarity:")
                         st.write(predictions[0][0])
-                        if sentiment == 'Positive' or 'Neutral' and predicted_emotion =='sadness':
+                        if sentiment =='Neutral' and predicted_emotion =='sadness':
                             predicted_emotion = 'ambiguous 🤓 '
+                        elif sentiment == 'Positive' and predicted_emotion =='sadness':
+                            predicted_emotion = 'satisfaction 🤓 '
                         st.subheader("Emotion:")
                         st.write(predicted_emotion)
                         st.subheader("Polarity:")
